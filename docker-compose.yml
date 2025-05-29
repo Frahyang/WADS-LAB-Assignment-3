@@ -5,13 +5,13 @@ services:
     image: juwono136/todolist-backend:latest
     restart: always
     environment:
-      PORT: ${PORT}
-      CONNECTION_URL: ${CONNECTION_URL}
-      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
-      EMAIL_USER: ${EMAIL_USER}
-      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      PORT: ${5000}
+      CONNECTION_URL: ${mongodb+srv://frahyang2005:LRFtgFHjTXIWmHga@cluster-todolistmern.o0qlg.mongodb.net/?retryWrites=true&w=majority&appName=cluster-todolistmern}
+      REFRESH_TOKEN_SECRET: ${sigma}
+      EMAIL_USER: ${suss99847@gmail.com}
+      EMAIL_PASSWORD: ${syou pgih hvtm icjb}
     ports:
-      - "3002:3002"
+      - "3096:3096"
 
   frontend:
     image: juwono136/todolist-frontend:latest
@@ -19,4 +19,4 @@ services:
     depends_on:
       - backend
     ports:
-      - "3001:3001"
+      - "3095:3095"
