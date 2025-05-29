@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import ActivateAccount from "./pages/ActivateAccount";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<LoginPage />} />
+
+        {/* Activation route */}
+        <Route path="/user/activate/:token" element={<ActivateAccount />} />
 
         {/* prevent user after login */}
         <Route path="*" element={<Navigate to="/signin" />} />

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -6,7 +7,45 @@ const AddTaskComponent = () => {
   const [taskDesc, setTaskDesc] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleAddTask = async (e) => {};
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+
+    if (!taskTitle || !taskDesc) {
+      return toast.error("Task title and description are required.");
+    }
+
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return toast.error("You must be logged in.");
+      }
+
+      const res = await axios.post(
+        "http://localhost:5173/service/user/add_todo",
+        {
+          todo_name: taskTitle,
+          todo_desc: taskDesc,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Task added successfully!");
+      setTaskTitle("");
+      setTaskDesc("");
+    } catch (error) {
+      console.error("Add task error:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || "Failed to add task.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
