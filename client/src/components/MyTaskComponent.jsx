@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const MyTaskComponent = () => {
   const [tasks, setTasks] = useState([]);
@@ -10,13 +11,83 @@ const MyTaskComponent = () => {
   const [updatedTitle, setUpdatedTitle] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
 
-  const fetchTasks = async () => {};
+  const fetchTasks = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return toast.error("You must be logged in.");
 
-  const handleEdit = (task) => {};
+      const res = await axios.get("http://localhost:5000/service/todo/get_all", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  const handleUpdateTask = async () => {};
+      setTasks(res.data || []);
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
+      toast.error("Failed to load tasks.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const handleDelete = async (taskId) => {};
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const handleEdit = (task) => {
+    setSelectedTask(task);
+    setUpdatedTitle(task.todo_name); // Assuming task field is `todo_name`
+    setUpdatedDescription(task.todo_desc); // Assuming task field is `todo_desc`
+    document.getElementById("update-modal").showModal();
+  };
+
+  const handleUpdateTask = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return toast.error("You must be logged in.");
+
+      await axios.patch(
+        `http://localhost:5000/service/todo/update_todo/${selectedTask._id}`,
+        {
+          todo_name: updatedTitle,
+          todo_desc: updatedDescription,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Task updated successfully.");
+      fetchTasks();
+      document.getElementById("update-modal").close();
+    } catch (error) {
+      console.error("Update task error:", error);
+      toast.error("Failed to update task.");
+    }
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return toast.error("You must be logged in.");
+
+      await axios.delete(`http://localhost:5000/service/todo/delete_todo/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toast.success("Task deleted.");
+      fetchTasks();
+    } catch (error) {
+      console.error("Delete task error:", error);
+      toast.error("Failed to delete task.");
+    }
+  };
 
   return (
     <div>
@@ -29,11 +100,11 @@ const MyTaskComponent = () => {
       {!loading &&
         tasks.map((task) => (
           <div
-            key={task.id}
+            key={task._id}
             className="flex flex-col gap-2 mt-2 p-3 text-white bg-green-700 rounded-md shadow-md"
           >
-            <h1 className="text-xl font-semibold mb-2">{task.title}</h1>
-            <p className="text-sm text-gray-100">{task.description}</p>
+            <h1 className="text-xl font-semibold mb-2">{task.todo_name}</h1>
+            <p className="text-sm text-gray-100">{task.todo_desc}</p>
 
             <div className="flex w-full justify-end items-center gap-4 mt-4">
               <button
@@ -46,7 +117,7 @@ const MyTaskComponent = () => {
 
               <button
                 className="btn btn-error bg-red-600 text-white flex gap-1 px-3"
-                onClick={() => handleDelete(task.id)}
+                onClick={() => handleDelete(task._id)}
               >
                 <MdDeleteOutline className="text-lg" />
                 Delete
@@ -55,7 +126,7 @@ const MyTaskComponent = () => {
           </div>
         ))}
 
-      {/* Modal Popup for Update Task (DaisyUI component) */}
+      {/* Update Task Modal */}
       <dialog id="update-modal" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Update Task</h3>

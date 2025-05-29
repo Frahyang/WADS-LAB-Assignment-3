@@ -17,7 +17,7 @@ const ActivateAccount = () => {
 
         setTimeout(() => {
           navigate("/signin");
-        }, 3000);
+        }, 1000);
       } catch (err) {
         toast.error(err.response?.data?.message || "Activation failed.");
         setLoading(false);

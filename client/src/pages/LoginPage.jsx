@@ -94,6 +94,7 @@ const LoginPage = () => {
                 Login
               </button>
             </form>
+            <p>Don't have an account? <a href="http://localhost:5173/signup" style={{ textDecoration: "underline" }}>Sign Up!</a></p>
           </div>
         </>
       )}

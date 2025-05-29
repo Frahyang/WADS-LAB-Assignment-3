@@ -15,19 +15,23 @@ const AddTaskComponent = () => {
     }
 
     setLoading(true);
-
+    
+    
     try {
       const token = localStorage.getItem("token");
+      console.log(token)
       if (!token) {
         setLoading(false);
         return toast.error("You must be logged in.");
       }
 
       const res = await axios.post(
-        "http://localhost:5173/service/user/add_todo",
+        "http://localhost:5000/service/todo/add_todo",
         {
           todo_name: taskTitle,
+          todo_image: "https://api.dicebear.com/9.x/icons/svg?seed=Katherine",
           todo_desc: taskDesc,
+          todo_status: "active"
         },
         {
           headers: {
@@ -35,6 +39,8 @@ const AddTaskComponent = () => {
           },
         }
       );
+
+      window.location.reload()
 
       toast.success("Task added successfully!");
       setTaskTitle("");

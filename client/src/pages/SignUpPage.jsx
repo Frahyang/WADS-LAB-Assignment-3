@@ -113,6 +113,7 @@ const SignUpPage = () => {
                 Sign Up
               </button>
             </form>
+            <p>Already have an account? <a href="http://localhost:5173/signin" style={{ textDecoration: "underline" }}>Sign In!</a></p>
           </div>
         </>
       )}

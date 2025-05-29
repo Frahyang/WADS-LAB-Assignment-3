@@ -12,12 +12,14 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/signup" element={<SignUpPage />} />
-        
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<LoginPage />} />
 
         {/* Activation route */}
         <Route path="/user/activate/:token" element={<ActivateAccount />} />
+
+        <Route path="/signin" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />} />
+
+        
 
         {/* prevent user after login */}
         <Route path="*" element={<Navigate to="/signin" />} />

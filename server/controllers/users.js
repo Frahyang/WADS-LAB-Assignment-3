@@ -28,6 +28,12 @@ function createRefreshToken(payload) {
     return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' })
 }
 
+// create access token
+function createAccessToken(payload) {
+    // Use a different secret and short expiry (e.g., 15m)
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+}
+
 // user sign-up
 export const signUp = async (req, res) => {
     try {
@@ -127,6 +133,8 @@ export const signIn = async (req, res) => {
 
         const refresh_token = createRefreshToken({ id: user._id })
 
+        const access_token = createAccessToken({ id: user._id });
+
         const expiry = 24 * 60 * 60 * 1000 // 1 day
 
         res.cookie('refreshtoken', refresh_token, {
@@ -138,6 +146,7 @@ export const signIn = async (req, res) => {
 
         res.json({
             message: "Sign In successfully!",
+            access_token,
             user: {
                 id: user._id,
                 name: user.name,
