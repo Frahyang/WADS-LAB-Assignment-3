@@ -15,16 +15,10 @@ dotenv.config();
 
 app.use(express.json()); // Built-in body-parser for parsing JSON
 
-const FRONTEND = "https://e2425-wads-l4bcg3-haidar.csbihub.id";
-
-app.use(
-  cors({
-    origin: FRONTEND,
-    credentials: true,
-    methods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const corsOptions = {
+    origin: "*",
+    credentials: false,
+};
 
 app.use(cors(corsOptions)); // Enable Cross-Origin Resource Sharing
 app.use(cookieParser()); // Enable cookie parsing
