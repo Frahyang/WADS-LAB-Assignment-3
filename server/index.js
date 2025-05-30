@@ -16,8 +16,8 @@ dotenv.config();
 app.use(express.json()); // Built-in body-parser for parsing JSON
 
 const corsOptions = {
-  origin: "https://e2425-wads-l4bcg3-haidar.csbihub.id",
-  methods: ["GET", "POST"],
+    origin: "*",
+    credentials: false,
 };
 
 app.use(cors(corsOptions)); // Enable Cross-Origin Resource Sharing
