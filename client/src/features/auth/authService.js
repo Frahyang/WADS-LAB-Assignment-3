@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/service/user'
+const API_URL = '/user'
 
 // signin user
 const signin = async (userData) => {
