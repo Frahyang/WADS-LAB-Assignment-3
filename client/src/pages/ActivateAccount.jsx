@@ -11,7 +11,7 @@ const ActivateAccount = () => {
   useEffect(() => {
     const activateAccount = async () => {
       try {
-        const res = await axios.post("/user/activation", { activation_token: token });
+        const res = await axios.post("/service/user/activation", { activation_token: token });
         toast.success(res.data.message);
         setLoading(false);
 
