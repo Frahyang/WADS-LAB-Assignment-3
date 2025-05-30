@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       proxy: {
-        "/service": {
+        "/": {
           target: mode === "development"
             ? "http://localhost:5000"
             : "https://e2425-wads-l4bcg3-server-haidar.csbihub.id/",
