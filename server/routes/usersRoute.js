@@ -101,7 +101,7 @@ router.post("/signup", signUp)
  *       '500':
  *         description: Internal server error
  */
-router.post("/activation", activateEmail)
+router.post("/user/activation", activateEmail)
 
 /**
  * @openapi
