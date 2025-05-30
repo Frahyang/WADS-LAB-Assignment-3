@@ -14,7 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
 
         {/* Activation route */}
-        <Route path="/user/activate/:token" element={<ActivateAccount />} />
+        <Route path="/activate/:token" element={<ActivateAccount />} />
 
         <Route path="/signin" element={<LoginPage />} />
         <Route path="/" element={<HomePage />} />
