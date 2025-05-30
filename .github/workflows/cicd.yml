@@ -66,3 +66,4 @@ jobs:
           ACCESS_TOKEN_SECRET: S{{ secrets.ACCESS_TOKEN_SECRET }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          DEFAULT_CLIENT_URL: ${{ secrets.DEFAULT_CLIENT_URL }}
