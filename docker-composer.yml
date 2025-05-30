@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   backend:
-    image: fadhillahhaidarrahyang/fad-client-image:latest
+    image: fadhillahhaidarrahyang/fad-server-image:latest
     restart: always
     environment:
       PORT: ${PORT}
@@ -14,7 +14,7 @@ services:
       - "3096:3096"
 
   frontend:
-    image: fadhillahhaidarrahyang/fad-server-image:latest
+    image: fadhillahhaidarrahyang/fad-client-image:latest
     restart: always
     depends_on:
       - backend
