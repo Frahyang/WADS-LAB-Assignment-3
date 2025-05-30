@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "axiosConfig.js";
 import toast from "react-hot-toast";
 
 const ActivateAccount = () => {
