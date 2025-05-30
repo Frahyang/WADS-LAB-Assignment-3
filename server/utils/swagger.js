@@ -116,11 +116,11 @@ const swaggerSpec = swaggerJsDoc({
         },
         servers: [
             {
-                url: 'http://localhost:5000/service/user',
+                url: 'http://e2425-wads-l4bcg3-server-haidar.csbihub.id/service/user',
                 description: 'Development - user',
             },
             {
-                url: "http://localhost:5000/service/todo",
+                url: "http://e2425-wads-l4bcg3-server-haidar.csbihub.id/service/todo",
                 description: 'Development - todo'
             }
         ],
