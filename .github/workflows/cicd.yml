@@ -58,7 +58,7 @@ jobs:
 
       - name: Run New Containers
         run: |
-          docker compose up -d
+          docker compose up -d 
         env:
           PORT: ${{ secrets.PORT }}
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
