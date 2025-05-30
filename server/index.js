@@ -29,8 +29,8 @@ const PORT = process.env.PORT
 // Ensure trust for reverse proxies (e.g., Nginx or cloud hosting)
 app.set('trust proxy', true);
 
-app.use("/todo", todoRoute);
-app.use("/user", usersRoute);
+app.use("/service/todo", todoRoute);
+app.use("/service/user", usersRoute);
 
 // api documentation endpoint
 app.use("/todolist/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
