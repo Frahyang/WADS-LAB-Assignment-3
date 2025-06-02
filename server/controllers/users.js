@@ -74,9 +74,9 @@ export const signUp = async (req, res) => {
         };
 
         // create email notification for user activation
-        const refreshToken = createRefreshToken(newUser)
+        const activationToken = createAccessToken(newUser)
 
-        const url = `${DEFAULT_CLIENT_URL}/user/activate/${refreshToken}`;
+        const url = `${DEFAULT_CLIENT_URL}/user/activate/${activationToken}`;
 
         userSendMail(email, url, "Verify your email address", "Confirm Email")
 
@@ -90,7 +90,7 @@ export const signUp = async (req, res) => {
 export const activateEmail = async (req, res) => {
     try {
         const { activation_token } = req.body;
-        const user = jwt.verify(activation_token, process.env.REFRESH_TOKEN_SECRET)
+        const user = jwt.verify(activation_token, process.env.ACCESS_TOKEN_SECRET)
 
         const { personal_id, name, email, password, address, phone_number } = user
 
