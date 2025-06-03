@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const todolistSchema = mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+        required: true
+    },
     todo_name: {
         type: String,
         required: true,
