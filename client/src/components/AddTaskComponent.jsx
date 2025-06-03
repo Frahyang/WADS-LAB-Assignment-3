@@ -26,7 +26,7 @@ const AddTaskComponent = () => {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/service/todo/add_todo",
+        "https://e2425-wads-l4bcg3-haidar.csbihub.id/service/todo/add_todo",
         {
           todo_name: taskTitle,
           todo_image: "https://api.dicebear.com/9.x/icons/svg?seed=Katherine",

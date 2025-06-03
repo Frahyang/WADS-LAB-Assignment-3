@@ -17,7 +17,7 @@ const MyTaskComponent = () => {
       const token = localStorage.getItem("token");
       if (!token) return toast.error("You must be logged in.");
 
-      const res = await axios.get("http://localhost:5000/service/todo/get_all", {
+      const res = await axios.get("https://e2425-wads-l4bcg3-haidar.csbihub.id/service/todo/get_all", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +49,7 @@ const MyTaskComponent = () => {
       if (!token) return toast.error("You must be logged in.");
 
       await axios.patch(
-        `http://localhost:5000/service/todo/update_todo/${selectedTask._id}`,
+        `https://e2425-wads-l4bcg3-haidar.csbihub.id/service/todo/update_todo/${selectedTask._id}`,
         {
           todo_name: updatedTitle,
           todo_desc: updatedDescription,
@@ -75,7 +75,7 @@ const MyTaskComponent = () => {
       const token = localStorage.getItem("token");
       if (!token) return toast.error("You must be logged in.");
 
-      await axios.delete(`http://localhost:5000/service/todo/delete_todo/${taskId}`, {
+      await axios.delete(`https://e2425-wads-l4bcg3-haidar.csbihub.id/service/todo/delete_todo/${taskId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
