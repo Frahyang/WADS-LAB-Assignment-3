@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import NavbarComponent from "../components/NavbarComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { reset, signin } from "../features/auth/authSlice";
-import { Navigate } from "react-router";
+import { Navigate, Link } from "react-router";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -94,7 +94,7 @@ const LoginPage = () => {
                 Login
               </button>
             </form>
-            <p>Don't have an account? <a href="http://localhost:5173/signup" style={{ textDecoration: "underline" }}>Sign Up!</a></p>
+            <p>Don't have an account? <Link to="/signup" style={{ textDecoration: "underline" }}>Sign Up!</Link></p>
           </div>
         </>
       )}
